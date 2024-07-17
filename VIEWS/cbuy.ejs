@@ -1,0 +1,156 @@
+<%- layout('Layout/boilerplate.ejs') %>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+<style>
+  body {
+    background-color: #28a745; /* Stock market green */
+    color: #fff; /* White text */
+    font-family: Arial, sans-serif; /* Change font family */
+  }
+
+  .card {
+    transition: box-shadow 0.3s; /* Add transition effect for box shadow */
+  }
+
+  .card:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Add box shadow on hover */
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    margin-top: 3.5rem;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: #343a40; /* Dark gray background */
+    color: #fff; /* White text */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .sidebar p {
+    margin: 0;
+    font-size: 1rem;
+  }
+</style>
+<div class="sidebar">
+  <ul class="list-group client-info-container" style="width: 100%">
+    <li class="list-group-item">
+      <p><i class="fas fa-user"></i>Username: <%=Name%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-id-card"></i>Id: <%=CustomerNo%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-coins"></i> Balance: <%=Balance%></p>
+    </li>
+
+    <ul class="navbar-nav flex-column" style="padding-top: 20px; height: 50%">
+      <li
+        class="nav-item"
+        style="width: 200px; border: 1px solid white; height: 20vh"
+      >
+        <a
+          class="nav-link active text-center"
+          aria-current="page"
+          href="/client/<%=id%>/buy"
+          style="font-size: 20px; color: white"
+          >Buy</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        style="width: 200px; border: 1px solid white; height: 20vh"
+      >
+        <a
+          class="nav-link text-center"
+          href="/client/<%=id%>/sell"
+          style="font-size: 20px; color: white"
+          >Sell</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        style="
+          width: 200px;
+          border: 1px solid white;
+          margin-left: 0;
+          height: 20vh;
+        "
+      >
+        <a
+          class="nav-link text-center"
+          href="/client/<%=id%>/portfolio"
+          style="font-size: 20px; color: white"
+          >Portfolio</a
+        >
+      </li>
+    </ul>
+  </ul>
+</div>
+
+<div class="container-fluid" style="color: white; margin-left: 5rem">
+  <div class="row justify-content-center">
+    <div class="col-md-10">
+      <div class="card" style="background-color: #28a745">
+        <div
+          class="card-header"
+          style="background-color: #28a745; color: black; margin-top: 15vh"
+        >
+          <h2 class="fw-bold text-center">Stocks Available To Buy Or View</h2>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <% for(item of fp){ %>
+            <div class="col-md-6 mb-4">
+              <div class="card bg-light" style="transition: box-shadow 0.3s">
+                <div class="card-body">
+                  <h5 class="card-title text-success">
+                    Stock <%= item.FundNo %>
+                  </h5>
+                  <p class="card-text"><%= item.Name %></p>
+                  <p class="card-text fw-bold">
+                    Current Price: <%= item.Price %>
+                  </p>
+                  <div class="d-flex justify-content-between">
+                    <form
+                      action="/client/fp/item/<%=item.FundNo%>/<%=id%>/buy"
+                      method="get"
+                    >
+                      <button type="submit" class="btn btn-success btn-lg">
+                        Buy
+                      </button>
+                    </form>
+                    <form
+                      action="/client/fp/item/<%=item.FundNo%>"
+                      method="get"
+                    >
+                      <button type="submit" class="btn btn-info btn-lg">
+                        View
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,214 @@
+<%-layout('Layout/boilerplate.ejs')%>
+
+<!-- Font Awesome CDN -->
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+<style>
+  body {
+    background-color: #28a745; /* Stock market green */
+    color: #fff; /* White text */
+    font-family: Arial, sans-serif; /* Change font family */
+  }
+
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 3.5rem;
+    width: 200px;
+    height: 81.95vh;
+    background-color: #343a40; /* Dark gray background */
+    color: #fff; /* White text */
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .sidebar p {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  .content {
+    margin-left: 200px; /* Adjust based on sidebar width */
+    padding: 20px;
+  }
+
+  .client-info-container {
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 15vw;
+    margin-bottom: 20px;
+  }
+
+  .client-info-container h4 {
+    font-size: 1.2rem;
+    color: #007bff; /* Blue color */
+  }
+
+  .client-info-container p {
+    font-size: 1rem;
+    color: #343a40; /* Dark gray color */
+  }
+
+  .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #007bff; /* Blue color */
+  }
+
+  .card-text {
+    font-size: 1rem;
+    color: #343a40; /* Dark gray color */
+  }
+
+  .popup {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 123, 255, 0.8); /* Blue color with opacity */
+    color: #fff; /* White text */
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 99; /* Ensure the pop-up stays above other elements */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .card:hover .popup {
+    display: block;
+  }
+</style>
+
+<div class="sidebar">
+  <ul class="list-group client-info-container" styles="width:20vw;">
+    <li class="list-group-item">
+      <p><i class="fas fa-user"></i>Username: <%=person.Username%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-id-card"></i>Id: <%=person.CustomerNo%></p>
+    </li>
+  </ul>
+</div>
+
+<div class="content">
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h5 class="card-title text-light">View All Funds</h5>
+            <p class="card-text text-light">Explore investment options.</p>
+            <!-- Adjusted content to match other cards -->
+            <form action="/client/<%=person.CustomerNo%>/buy" method="get">
+              <button type="submit" class="btn btn-primary">View</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h5 class="card-title text-light">View Expensive 5</h5>
+            <p class="card-text text-light">Explore investment options.</p>
+            <!-- Adjusted content to match other cards -->
+            <form action="/client/<%=person.CustomerNo%>/top5" method="get">
+              <button type="submit" class="btn btn-primary">View</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h5 class="card-title text-light">View Cheap 5</h5>
+            <p class="card-text text-light">Explore investment options.</p>
+            <!-- Adjusted content to match other cards -->
+            <form action="/client/<%=person.CustomerNo%>/bottom5" method="get">
+              <button type="submit" class="btn btn-primary">View</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h5 class="card-title text-light">Buy Stocks</h5>
+            <p class="card-text text-light">Explore investment options.</p>
+            <!-- Adjusted content to match other cards -->
+            <div class="popup">Click to explore investment opportunities.</div>
+            <form action="/client/<%=person.CustomerNo%>/buy" method="get">
+              <button type="submit" class="btn btn-primary">Buy</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h5 class="card-title text-light">Sell Stocks</h5>
+            <p class="card-text text-light">Manage your portfolio.</p>
+            <div class="popup">Click to manage your portfolio.</div>
+            <form action="/client/<%=person.CustomerNo%>/sell" method="get">
+              <button type="submit" class="btn btn-primary">Sell</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card bg-dark text-white">
+          <div class="card-body">
+            <h5 class="card-title text-light">View Portfolio</h5>
+            <p class="card-text text-light">Analyze your investments.</p>
+            <div class="popup">Click to analyze your investments.</div>
+            <form
+              action="/client/<%=person.CustomerNo%>/portfolio"
+              method="get"
+            >
+              <button type="submit" class="btn btn-primary">
+                View Portfolio
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // This script is placeholder for any client-side JavaScript functionality.
+  </script>
+</div>

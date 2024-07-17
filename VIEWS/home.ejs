@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MFMS - Home</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <!-- Custom CSS -->
+    <style>
+      body {
+        background-color: #343a40; /* Dark background color */
+        color: #fff; /* White text color */
+        font-family: Arial, sans-serif; /* Default font */
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3rem; /* Larger font size for heading */
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.2rem; /* Larger font size for paragraphs */
+        margin-bottom: 30px;
+      }
+
+      .btn {
+        padding: 12px 24px; /* Increase padding for buttons */
+        font-size: 1.2rem; /* Larger font size for buttons */
+        border-radius: 5px; /* Rounded corners for buttons */
+        margin: 10px;
+        width: 200px; /* Fixed width for buttons */
+        animation-duration: 0.5s; /* Animation duration */
+      }
+
+      .btn-primary {
+        background-color: #007bff; /* Blue primary button color */
+        border-color: #007bff; /* Border color for primary button */
+      }
+
+      .btn-success {
+        background-color: #28a745; /* Green success button color */
+        border-color: #28a745; /* Border color for success button */
+      }
+
+      .btn:hover {
+        animation-name: bounce; /* Add bounce animation on hover */
+        transform-origin: center; /* Set transform origin */
+      }
+
+      @keyframes bounce {
+        0% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">
+        Mutual Funds Management System
+      </h1>
+      <p class="animate__animated animate__fadeInUp">
+        Welcome to the Mutual Funds Management System (MFMS).
+      </p>
+      <p class="animate__animated animate__fadeIn">
+        Please select your role to proceed:
+      </p>
+      <a
+        href="/client/login"
+        class="btn btn-primary animate__animated animate__fadeInLeft"
+        >Client Login</a
+      >
+      <a
+        href="/admin/login"
+        class="btn btn-success animate__animated animate__fadeInRight"
+        >Admin Login</a
+      >
+    </div>
+
+    <!-- Animate.css CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.js"></script>
+  </body>
+</html>

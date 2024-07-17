@@ -1,0 +1,57 @@
+<% if (success && success.length) { %>
+<div
+  class="alert alert-warning alert-dismissible fade show"
+  role="alert"
+  style="
+    margin-top: 15vh;
+    width: 50vw;
+    margin-right: 25vw;
+    margin-left: 25vw;
+    text-align: center;
+    height: 10vh;
+  "
+>
+  <strong><%= success %></strong>
+
+  <button
+    type="button"
+    class="close"
+    data-dismiss="alert"
+    aria-label="Close"
+    onclick="closeAlert(this)"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %> <% if (error && error.length) { %>
+<div
+  class="alert alert-danger alert-dismissible fade show"
+  role="alert"
+  style="
+    margin-top: 15vh;
+    width: 50vw;
+    margin-left: 25vw;
+    margin-right: 25vw;
+    text-align: center;
+    height: 10vh;
+  "
+>
+  <strong><%= error %></strong>
+
+  <button
+    type="button"
+    class="close"
+    data-dismiss="alert"
+    aria-label="Close"
+    onclick="closeAlert(this)"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<% } %>
+
+<script>
+  function closeAlert(button) {
+    button.parentElement.remove(); // Remove the parent element of the close button (i.e., the alert)
+  }
+</script>

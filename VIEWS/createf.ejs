@@ -1,0 +1,70 @@
+<%-layout('Layout/boilerplate.ejs')%>
+<style>
+  body {
+    background-color: #28a745;
+  }
+</style>
+<div class="container-fluid">
+  <div
+    class="row justify-content-center align-items-center"
+    style="height: 100vh"
+  >
+    <div class="col-md-6">
+      <div class="card border-primary">
+        <div class="card-header bg-primary text-white text-center">
+          <h2 class="fw-bold">Create A Fund</h2>
+        </div>
+        <div class="card-body">
+          <form
+            action="/admin/create"
+            method="post"
+            class="needs-validation"
+            novalidate
+          >
+            <div class="mb-3">
+              <label for="fundno" class="form-label">Fund No-</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fundno"
+                name="fundno"
+                placeholder="Enter the FundNo"
+                required
+              />
+              <div class="invalid-feedback">Please enter your FundNo.</div>
+            </div>
+            <div class="mb-3">
+              <label for="fundname" class="form-label">Fund Name-</label>
+              <input
+                type="text"
+                class="form-control"
+                id="fundname"
+                name="fundname"
+                placeholder="Enter the FundName"
+                required
+              />
+              <div class="invalid-feedback">Please enter your FundName.</div>
+            </div>
+            <div class="mb-3">
+              <label for="funddesc" class="form-label">Fund Description-</label>
+              <input
+                type="text"
+                class="form-control"
+                id="funddesc"
+                name="funddesc"
+                placeholder="Enter the FundName"
+                required
+              />
+              <div class="invalid-feedback">
+                Please enter your FundDescription.
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

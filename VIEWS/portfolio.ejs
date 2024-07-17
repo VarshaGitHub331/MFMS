@@ -1,0 +1,178 @@
+<%- layout('Layout/boilerplate.ejs') %>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+<style>
+  body {
+    background-color: #28a745; /* Stock market green background color */
+    color: #333; /* Dark text color */
+    font-family: Arial, sans-serif; /* Default font */
+  }
+
+  .portfolio-container {
+    background-color: #f8f9fa; /* Light gray background for the main container */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    padding: 20px; /* Padding inside the container */
+    margin: 20px auto; /* Centering the container */
+    max-width: 800px; /* Limiting container width */
+  }
+
+  .portfolio-title {
+    background-color: #007bff; /* Blue background for the title */
+    color: #fff; /* White text color */
+    padding: 10px; /* Padding for the title */
+    border-top-left-radius: 10px; /* Rounded corners for the top */
+    border-top-right-radius: 10px;
+    margin-top: -20px; /* Negative margin to overlap the container */
+    margin-bottom: 20px; /* Spacing between the title and content */
+    text-align: center; /* Center align title */
+  }
+
+  .portfolio-item {
+    background-color: #fff; /* White background for items */
+    color: #333; /* Dark text color */
+    padding: 10px; /* Padding for each item */
+    margin-bottom: 10px; /* Spacing between items */
+    border-radius: 5px; /* Rounded corners for items */
+    border: 1px solid #ced4da; /* Gray border */
+  }
+
+  .portfolio-item strong {
+    color: #007bff; /* Blue color for strong text */
+  }
+
+  .portfolio-action {
+    background-color: #007bff; /* Blue background for action buttons */
+    color: #fff; /* White text color */
+    padding: 10px 20px; /* Padding for buttons */
+    border: none; /* Remove button borders */
+    border-radius: 5px; /* Rounded corners for buttons */
+    text-decoration: none; /* Remove underline for buttons */
+    margin-top: 20px; /* Spacing between buttons */
+    display: block; /* Ensure button occupies full width */
+    text-align: center; /* Center align button */
+  }
+
+  .portfolio-action:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    margin-top: 3.5rem;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: #343a40; /* Dark gray background */
+    color: #fff; /* White text */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .sidebar p {
+    margin: 0;
+    font-size: 1rem;
+  }
+</style>
+<div class="sidebar" style="margin-right: 5vw">
+  <ul class="list-group client-info-container" style="width: 100%">
+    <li class="list-group-item">
+      <p><i class="fas fa-user"></i>Username: <%=Name%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-id-card"></i>Id: <%=CustomerNo%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-coins"></i> Balance: <%=Balance%></p>
+    </li>
+
+    <ul class="navbar-nav flex-column" style="padding-top: 20px; height: 50%">
+      <li
+        class="nav-item"
+        style="width: 200px; border: 1px solid white; height: 20vh"
+      >
+        <a
+          class="nav-link active text-center"
+          aria-current="page"
+          href="/client/<%=id%>/buy"
+          style="font-size: 20px; color: white"
+          >Buy</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        style="width: 200px; border: 1px solid white; height: 20vh"
+      >
+        <a
+          class="nav-link text-center"
+          href="/client/<%=id%>/sell"
+          style="font-size: 20px; color: white"
+          >Sell</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        style="
+          width: 200px;
+          border: 1px solid white;
+          margin-left: 0;
+          height: 20vh;
+        "
+      >
+        <a
+          class="nav-link text-center"
+          href="/client/<%=id%>/portfolio"
+          style="font-size: 20px; color: white"
+          >Portfolio</a
+        >
+      </li>
+    </ul>
+  </ul>
+</div>
+
+<div class="portfolio-container" style="margin-top: 18vh">
+  <div class="portfolio-title">
+    <h2 class="text-center">Client Portfolio</h2>
+  </div>
+
+  <div class="portfolio-item">
+    <strong>Client DOB:</strong> <%= person.DOB %>
+  </div>
+
+  <div class="portfolio-item">
+    <strong>Client Name:</strong> <%= person.NAME %>
+  </div>
+
+  <div class="portfolio-item">
+    <strong>Client ID:</strong> <%= person.CustomerNo %>
+  </div>
+
+  <div class="portfolio-item">
+    <strong>Balance:</strong> Rs <%= person.Balance %>
+  </div>
+  <div class="portfolio-item">
+    <strong>Number of Purchase Transactions:</strong> <%= nb %>
+  </div>
+
+  <div class="portfolio-item">
+    <strong>Number of Selling Transactions:</strong> <%= ns %>
+  </div>
+
+  <div class="text-center">
+    <a href="/client/<%=person.CustomerNo%>/owns" class="portfolio-action"
+      >View Owned Funds</a
+    >
+  </div>
+</div>

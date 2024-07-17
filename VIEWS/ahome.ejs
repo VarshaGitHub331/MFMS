@@ -1,0 +1,42 @@
+<%- layout('Layout/boilerplate.ejs') %>
+<style>
+  body {
+    background-color: #28a745;
+  }
+</style>
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <!-- Admin details section -->
+      <div class="card mb-3" style="background-color: #f0f5f9">
+        <div class="card-header bg-primary text-light">
+          <h5 class="card-title mb-0">Admin Details</h5>
+        </div>
+        <div class="card-body">
+          <!-- Display admin name and ID -->
+          <p class="mb-1"><strong>Name:</strong> <%= name %></p>
+          <p class="mb-0"><strong>ID:</strong> <%= UserId %></p>
+        </div>
+      </div>
+      <!-- Options section -->
+      <div class="card" style="background-color: #f0f5f9">
+        <div class="card-header bg-primary text-light">
+          <h5 class="card-title mb-0">Options</h5>
+        </div>
+        <div class="card-body">
+          <!-- Links to create new fund and monitor funds pages -->
+          <form action="/admin/create" method="get">
+            <button type="submit" class="btn btn-success w-100 mb-2">
+              Create New Fund
+            </button>
+          </form>
+          <form action="/admin/monitor" method="get">
+            <button type="submit" class="btn btn-info w-100">
+              Monitor Stocks
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

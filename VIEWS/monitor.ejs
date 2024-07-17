@@ -1,0 +1,24 @@
+<% let qty = 0; %> <%- layout('Layout/boilerplate.ejs') %>
+<div
+  class="ms-5 me-5 w-100 border border-success text-center mb-2"
+  style="font-size: 1.5rem; text-transform: uppercase"
+>
+  Funds Available To Buy
+</div>
+<ul class="list-group">
+  <% for(f of funds){%>
+  <li
+    class="list-group-item mb-2 border border-success d-flex flex-row justify-content-around"
+  >
+    Stock <%=f.FundNo%> <span class="ms-2">Name:<%=f.FundName%></span>
+    <form action="/client/fp/item/itemid/id/buy" method="get">
+      <button type="submit" class="btn btn-success ms-2">Buy</button>
+    </form>
+    <form action="/client/fp/item/itemid" method="get">
+      <button type="submit" class="btn btn-info" href="fp/item/itemid">
+        View
+      </button>
+    </form>
+  </li>
+  <%}%>
+</ul>

@@ -1,0 +1,147 @@
+<% let qty = 0; %> <%- layout('Layout/boilerplate.ejs') %>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+
+<style>
+  body {
+    background-color: #28a745;
+  }
+  .sidebar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    margin-top: 3.5rem;
+    position: fixed;
+    width: 200px;
+    height: 100%;
+    background-color: #343a40; /* Dark gray background */
+    color: #fff; /* White text */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sidebar h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+  }
+
+  .sidebar p {
+    margin: 0;
+    font-size: 1rem;
+  }
+</style>
+<div class="sidebar" style="margin-right: 5vw">
+  <ul class="list-group client-info-container" style="width: 100%">
+    <li class="list-group-item">
+      <p><i class="fas fa-user"></i>Username: <%=Name%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-id-card"></i>Id: <%=CustomerNo%></p>
+    </li>
+    <li class="list-group-item">
+      <p><i class="fas fa-coins"></i> Balance: <%=Balance%></p>
+    </li>
+
+    <ul class="navbar-nav flex-column" style="padding-top: 20px; height: 50%">
+      <li
+        class="nav-item"
+        style="width: 200px; border: 1px solid white; height: 20vh"
+      >
+        <a
+          class="nav-link active text-center"
+          aria-current="page"
+          href="/client/<%=id%>/buy"
+          style="font-size: 20px; color: white"
+          >Buy</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        style="width: 200px; border: 1px solid white; height: 20vh"
+      >
+        <a
+          class="nav-link text-center"
+          href="/client/<%=id%>/sell"
+          style="font-size: 20px; color: white"
+          >Sell</a
+        >
+      </li>
+      <li
+        class="nav-item"
+        style="
+          width: 200px;
+          border: 1px solid white;
+          margin-left: 0;
+          height: 20vh;
+        "
+      >
+        <a
+          class="nav-link text-center"
+          href="/client/<%=id%>/portfolio"
+          style="font-size: 20px; color: white"
+          >Portfolio</a
+        >
+      </li>
+    </ul>
+  </ul>
+</div>
+
+<form
+  action="/client/<%=id%>/buy/<%=itemid%>"
+  class="ms-5"
+  method="post"
+  style="margin-top: 15vh; width: 60vw; margin-left: 2rem"
+>
+  <div class="card payment-window" style="margin-left: 10vw">
+    <div class="card-header bg-primary text-white">Payment Details</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="fq">Quantity You Want To Buy-</label>
+        <input
+          type="text"
+          class="form-control qty"
+          id="fq"
+          name="quantity"
+          placeholder="Enter Quantity"
+          onchange="HandleChange()"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="price" class="labelp">Current Price of <%=Name%>-</label>
+        <input
+          class="form-control"
+          value="<%=Price%>"
+          id="price"
+          name="price"
+          readonly
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="totalPrice">Total Amount to Pay:</label>
+        <input
+          class="form-control"
+          id="totalPrice"
+          name="totalPrice"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-success btn-pay">Pay Now</button>
+    </div>
+  </div>
+</form>
+<script>
+  const HandleChange = () => {
+    let qty = document.getElementById("fq").value;
+    let price = document.getElementById("price").value;
+    let totalPrice = qty * price;
+    document.getElementById("totalPrice").value = totalPrice;
+  };
+</script>

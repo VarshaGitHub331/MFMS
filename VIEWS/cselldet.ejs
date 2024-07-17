@@ -1,0 +1,38 @@
+<% let qty = 0; %> <%- layout('Layout/boilerplate.ejs') %>
+<style>
+  body {
+    background-color: green;
+  }
+</style>
+<form action="/client/id/buy" method="post">
+  <div class="card payment-window">
+    <div class="card-header bg-primary text-white">Payment Details</div>
+    <div class="card-body">
+      <div class="form-group">
+        <label for="fq">Quantity You Want To Sell-</label>
+        <input
+          type="text"
+          class="form-control qty"
+          id="fq"
+          name="quantity"
+          placeholder="Enter Quantity"
+          onchange="HandleChange()"
+        />
+      </div>
+      <div class="form-group mb-3">
+        <label for="price" class="labelp">Price</label>
+        <input
+          class="form-control"
+          value="<%=Price%>"
+          id="price"
+          name="price"
+          readonly
+        />
+      </div>
+    </div>
+    <div class="card-footer">
+      <button type="submit" class="btn btn-success btn-pay">Sell Now</button>
+    </div>
+  </div>
+</form>
+<script src="/cbuydet.js"></script>
